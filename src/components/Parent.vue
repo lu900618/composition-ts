@@ -4,6 +4,7 @@
   <p>{{ data.count }}</p>
   <p>{{ computedCount }}</p>
   <button @click="addCount">click</button>
+  <p>{{ countRef }}</p>
 </template>
 
 <script lang="ts">
@@ -14,7 +15,9 @@ import {
   ComputedRef,
   watchEffect,
   WatchStopHandle,
-  watch
+  watch,
+  ref,
+  Ref
 } from "vue";
 
 interface ParentReactive {
@@ -51,7 +54,10 @@ export default defineComponent({
         stopWatch();
       }
     }
-    return { data, computedCount, addCount };
+
+    const countRef: Ref<number> = ref<number>(100);
+
+    return { data, computedCount, addCount, countRef };
   }
 });
 </script>
