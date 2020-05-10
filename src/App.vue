@@ -1,15 +1,21 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
+    <Parent :message="message" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
+
+import Parent from "@/components/Parent.vue";
 
 export default defineComponent({
-  components: {}
-  // setup() {}
+  components: { Parent },
+  setup() {
+    return reactive({
+      message: "hello ts"
+    });
+  }
 });
 </script>
 
