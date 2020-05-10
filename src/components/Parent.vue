@@ -5,6 +5,8 @@
   <p>{{ computedCount }}</p>
   <button @click="addCount">click</button>
   <p>{{ countRef }}</p>
+  <p>{{ position }}</p>
+  <p>x: {{ x }}, y: {{ y }}</p>
 </template>
 
 <script lang="ts">
@@ -17,8 +19,11 @@ import {
   WatchStopHandle,
   watch,
   ref,
-  Ref
+  Ref,
+  ToRefs
 } from "vue";
+
+import useMousePosition, { Position } from "@/hooks/useMousePosition";
 
 interface ParentReactive {
   message: string;
@@ -56,8 +61,10 @@ export default defineComponent({
     }
 
     const countRef: Ref<number> = ref<number>(100);
+    const position: ToRefs<Position> = useMousePosition();
+    const { x, y } = useMousePosition();
 
-    return { data, computedCount, addCount, countRef };
+    return { data, computedCount, addCount, countRef, position, x, y };
   }
 });
 </script>
